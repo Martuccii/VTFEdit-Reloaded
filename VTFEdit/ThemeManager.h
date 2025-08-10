@@ -23,6 +23,7 @@ using namespace System;
 using namespace System::Windows::Forms;
 using namespace System::Drawing;
 using namespace System::IO;
+using namespace System::ComponentModel;
 
 namespace VTFEdit
 {
@@ -144,17 +145,18 @@ namespace VTFEdit
 			} 
 		}
 
-		static property ThemeType CurrentTheme 
-		{ 
+		// Current theme
+		static property ThemeType CurrentTheme
+		{
 			ThemeType get() { return currentTheme; }
 			void set(ThemeType theme) 
 			{ 
-				currentTheme = theme; 
+				currentTheme = theme;
 				SaveTheme();
 			}
 		}
 
-		// Initialize theme manager
+		// Initialize the theme manager
 		static void Initialize(String^ configPath)
 		{
 			configFile = configPath;
@@ -172,205 +174,304 @@ namespace VTFEdit
 
 			// Apply to all controls recursively
 			ApplyThemeToControl(form);
+			
+			// Force refresh all controls to ensure theme is applied
+			ForceRefresh(form);
+			
+			// Ensure controls maintain their functionality after theme application
+			EnsureControlFunctionality(form);
 		}
 
-		// Apply theme to a specific control and its children
-		static void ApplyThemeToControl(Control^ control)
+		// Force refresh of all controls to ensure theme is applied
+		static void ForceRefresh(Form^ form)
+		{
+			if (form == nullptr) return;
+
+			// Force the form to redraw
+			form->Invalidate();
+			form->Update();
+
+			// Force all controls to redraw
+			ForceRefreshControl(form);
+		}
+
+		// Recursively force refresh all controls
+		static void ForceRefreshControl(Control^ control)
 		{
 			if (control == nullptr) return;
 
-			// Apply theme based on control type
-			if (dynamic_cast<Panel^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<GroupBox^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<TextBox^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<RichTextBox^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<ComboBox^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<CheckBox^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<RadioButton^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<Label^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<Button^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<TrackBar^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<NumericUpDown^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<TreeView^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-				control->ForeColor = ControlForeColor;
-			}
-			else if (dynamic_cast<TabControl^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<TabPage^>(control) != nullptr)
-			{
-				control->BackColor = BackColor;
-				control->ForeColor = ForeColor;
-			}
-			else if (dynamic_cast<ProgressBar^>(control) != nullptr)
-			{
-				control->BackColor = ControlBackColor;
-			}
-			else if (dynamic_cast<MenuStrip^>(control) != nullptr)
-			{
-				control->BackColor = MenuBackColor;
-				control->ForeColor = MenuForeColor;
-			}
-			else if (dynamic_cast<ToolStrip^>(control) != nullptr)
-			{
-				control->BackColor = ToolStripBackColor;
-				control->ForeColor = ToolStripForeColor;
-			}
-			else if (dynamic_cast<StatusStrip^>(control) != nullptr)
-			{
-				control->BackColor = StatusBarBackColor;
-				control->ForeColor = StatusBarForeColor;
-			}
+			// Force this control to redraw
+			control->Invalidate();
+			control->Update();
 
-			// Apply to all child controls
+			// Force all child controls to redraw
 			for each (Control^ child in control->Controls)
 			{
-				ApplyThemeToControl(child);
+				ForceRefreshControl(child);
+			}
+		}
+		
+		// Ensure controls maintain their functionality after theme application
+		static void EnsureControlFunctionality(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Ensure all controls maintain their event handlers and properties
+			EnsureControlFunctionalityRecursive(form);
+		}
+		
+		// Recursively ensure control functionality
+		static void EnsureControlFunctionalityRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// For ToolStrip controls, ensure they maintain their functionality
+			if (control->GetType() == ToolStrip::typeid)
+			{
+				ToolStrip^ toolStrip = dynamic_cast<ToolStrip^>(control);
+				if (toolStrip != nullptr)
+				{
+					// Ensure the ToolStrip maintains its functionality
+					toolStrip->Renderer = gcnew ToolStripProfessionalRenderer();
+				}
+			}
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				EnsureControlFunctionalityRecursive(child);
 			}
 		}
 
 		// Toggle between light and dark themes
 		static void ToggleTheme()
 		{
-			CurrentTheme = (CurrentTheme == ThemeType::Light) ? ThemeType::Dark : ThemeType::Light;
+			currentTheme = (currentTheme == ThemeType::Light) ? ThemeType::Dark : ThemeType::Light;
+			SaveTheme();
 		}
 
-	private:
-		// Load theme from configuration
-		static void LoadTheme()
+		// Apply theme to a control and all its children recursively
+		static void ApplyThemeToControl(Control^ control)
 		{
-			if (String::IsNullOrEmpty(configFile)) return;
-
-			try
+			if (control == nullptr) return;
+			
+			// Apply theme based on control type
+			if (control->GetType() == ComboBox::typeid)
 			{
-				if (IO::File::Exists(configFile))
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == GroupBox::typeid)
+			{
+				control->BackColor = BackColor;
+				control->ForeColor = ForeColor;
+			}
+			else if (control->GetType() == Panel::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == Label::typeid)
+			{
+				control->BackColor = BackColor;
+				control->ForeColor = ForeColor;
+			}
+			else if (control->GetType() == Button::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == CheckBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == RadioButton::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == TextBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == ProgressBar::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == ListBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == ScrollBar::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == TreeView::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == TabControl::typeid)
+			{
+				control->BackColor = BackColor;
+				control->ForeColor = ForeColor;
+				
+				// Apply theme to TabControl specifically for better tab appearance
+				TabControl^ tabControl = dynamic_cast<TabControl^>(control);
+				if (tabControl != nullptr)
 				{
-					array<String^>^ lines = IO::File::ReadAllLines(configFile);
-					for each (String^ line in lines)
+					// Set tab colors for better visibility in dark mode
+					if (CurrentTheme == ThemeType::Dark)
 					{
-						if (line->StartsWith("VTFEdit.Theme="))
-						{
-							String^ themeValue = line->Substring(13);
-							if (themeValue == "Dark")
-								currentTheme = ThemeType::Dark;
-							else
-								currentTheme = ThemeType::Light;
-							break;
-						}
+						tabControl->BackColor = Color::FromArgb(45, 45, 48); // Dark tab background
+						tabControl->ForeColor = Color::White; // White text for tabs
+					}
+					else
+					{
+						tabControl->BackColor = SystemColors::Control;
+						tabControl->ForeColor = SystemColors::ControlText;
 					}
 				}
 			}
-			catch (Exception^)
+			else if (control->GetType() == TabPage::typeid)
 			{
-				// If there's an error, default to light theme
-				currentTheme = ThemeType::Light;
+				control->BackColor = BackColor;
+				control->ForeColor = ForeColor;
+				
+				// Apply theme to TabPage specifically
+				TabPage^ tabPage = dynamic_cast<TabPage^>(control);
+				if (tabPage != nullptr)
+				{
+					// Set tab page colors for better visibility
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						tabPage->BackColor = Color::FromArgb(30, 30, 30); // Darker background for content
+						tabPage->ForeColor = Color::White; // White text for content
+					}
+					else
+					{
+						tabPage->BackColor = SystemColors::Control;
+						tabPage->ForeColor = SystemColors::ControlText;
+					}
+				}
+			}
+			else if (control->GetType() == NumericUpDown::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == TrackBar::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == CheckedListBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == PictureBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == Splitter::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == RichTextBox::typeid)
+			{
+				control->BackColor = ControlBackColor;
+				control->ForeColor = ControlForeColor;
+			}
+			else if (control->GetType() == MainMenu::typeid)
+			{
+				// MainMenu doesn't have BackColor/ForeColor properties
+				// The theming will be handled by the system based on the parent form's theme
+			}
+			else if (control->GetType() == StatusBar::typeid)
+			{
+				control->BackColor = StatusBarBackColor;
+				control->ForeColor = StatusBarForeColor;
+			}
+			else if (control->GetType() == ToolStrip::typeid)
+			{
+				control->BackColor = ToolStripBackColor;
+				control->ForeColor = ToolStripForeColor;
+				
+				// Force the ToolStrip to use the new colors
+				ToolStrip^ toolStrip = safe_cast<ToolStrip^>(control);
+				if (toolStrip != nullptr)
+				{
+					toolStrip->Renderer = gcnew ToolStripProfessionalRenderer();
+				}
+			}
+			else
+			{
+				// Apply default theme to any other control types
+				try
+				{
+					control->BackColor = ControlBackColor;
+					control->ForeColor = ControlForeColor;
+				}
+				catch (Exception^)
+				{
+					// Some controls don't support BackColor/ForeColor, ignore errors
+				}
+			}
+			
+			// Apply theme to all child controls
+			for each (Control^ child in control->Controls)
+			{
+				ApplyThemeToControl(child);
 			}
 		}
 
-		// Save theme to configuration
+		// Save current theme to configuration file
 		static void SaveTheme()
 		{
 			if (String::IsNullOrEmpty(configFile)) return;
 
 			try
 			{
-				// Read existing config file
-				if (IO::File::Exists(configFile))
-				{
-					array<String^>^ lines = IO::File::ReadAllLines(configFile);
-					bool themeFound = false;
-					
-					// Look for existing theme line and update it
-					for (int i = 0; i < lines->Length; i++)
-					{
-						if (lines[i]->StartsWith("VTFEdit.Theme="))
-						{
-							lines[i] = "VTFEdit.Theme=" + ((currentTheme == ThemeType::Dark) ? "Dark" : "Light");
-							themeFound = true;
-							break;
-						}
-					}
-					
-					// If theme line not found, add it after [VTFEdit] section
-					if (!themeFound)
-					{
-						array<String^>^ newLines = gcnew array<String^>(lines->Length + 1);
-						int insertIndex = 0;
-						
-						for (int i = 0; i < lines->Length; i++)
-						{
-							newLines[i] = lines[i];
-							if (lines[i] == "[VTFEdit]")
-							{
-								insertIndex = i + 2; // Insert after [VTFEdit] and empty line
-								break;
-							}
-						}
-						
-						// Shift lines to make room for theme line
-						for (int i = lines->Length; i > insertIndex; i--)
-						{
-							newLines[i] = newLines[i - 1];
-						}
-						
-						newLines[insertIndex] = "VTFEdit.Theme=" + ((currentTheme == ThemeType::Dark) ? "Dark" : "Light");
-						lines = newLines;
-					}
-					
-					IO::File::WriteAllLines(configFile, lines);
-				}
+				File::WriteAllText(configFile, currentTheme.ToString());
 			}
 			catch (Exception^)
 			{
 				// Silently fail if we can't save the theme
+			}
+		}
+
+		// Load theme from configuration file
+		static void LoadTheme()
+		{
+			if (String::IsNullOrEmpty(configFile)) return;
+
+			try
+			{
+				if (File::Exists(configFile))
+				{
+					String^ themeText = File::ReadAllText(configFile);
+					if (themeText == "Dark")
+					{
+						currentTheme = ThemeType::Dark;
+					}
+					else
+					{
+						currentTheme = ThemeType::Light;
+					}
+				}
+			}
+			catch (Exception^)
+			{
+				// Silently fail if we can't load the theme, default to Light
+				currentTheme = ThemeType::Light;
 			}
 		}
 	};
