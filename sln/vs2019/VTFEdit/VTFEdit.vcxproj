@@ -16,6 +16,7 @@
     <Keyword>ManagedCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetName>VTFEdit Recharged</TargetName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -71,7 +72,7 @@
       <CompileAsManaged>true</CompileAsManaged>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <OutputFile>$(OutDir)VTFEdit Recharged.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AssemblyDebug>true</AssemblyDebug>
       <SubSystem>Windows</SubSystem>
@@ -105,7 +106,7 @@ copy "$(SolutionDir)..\..\thirdparty\bin\HLLib.dll" "$(TargetDir)"
       <CompileAsManaged>true</CompileAsManaged>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <OutputFile>$(OutDir)VTFEdit Recharged.exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -162,6 +163,7 @@ copy "$(SolutionDir)..\..\thirdparty\bin\HLLib.dll" "$(TargetDir)"
     <ClInclude Include="..\..\..\VTFEdit\DirectoryItemInfoManager.h" />
     <ClInclude Include="..\..\..\VTFEdit\resource.h" />
     <ClInclude Include="..\..\..\VTFEdit\stdafx.h" />
+    <ClInclude Include="..\..\..\VTFEdit\ThemeManager.h" />
     <ClInclude Include="..\..\..\VTFEdit\Utility.h" />
     <ClInclude Include="..\..\..\VTFEdit\VMTCreate.h">
       <FileType>CppForm</FileType>

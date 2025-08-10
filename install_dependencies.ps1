@@ -1,7 +1,7 @@
-# VTFEdit-Reloaded Dependencies Installer
+# VTFEdit Recharged Dependencies Installer
 # Este script instala todas las dependencias necesarias para compilar VTFEdit
 
-Write-Host "=== VTFEdit-Reloaded Dependencies Installer ===" -ForegroundColor Green
+Write-Host "=== VTFEdit Recharged Dependencies Installer ===" -ForegroundColor Green
 Write-Host "Instalando dependencias para compilar VTFEdit..." -ForegroundColor Yellow
 
 # Verificar si estamos ejecutando como administrador
@@ -85,7 +85,7 @@ Write-Host "`n6. Creando script de compilación..." -ForegroundColor Cyan
 
 $buildScript = @"
 @echo off
-echo === VTFEdit-Reloaded Build Script ===
+echo === VTFEdit Recharged Build Script ===
 
 REM Configurar variables de entorno de Visual Studio
 call "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath > temp_vs_path.txt

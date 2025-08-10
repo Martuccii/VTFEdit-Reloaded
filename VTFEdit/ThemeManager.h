@@ -180,6 +180,19 @@ namespace VTFEdit
 			
 			// Ensure controls maintain their functionality after theme application
 			EnsureControlFunctionality(form);
+			
+			// Force a complete repaint of the form and all controls
+			form->Refresh();
+			Application::DoEvents();
+			
+			// Additional force update for problematic controls
+			ForceUpdateAllControls(form);
+			
+			// Final force update after a brief delay to catch any remaining controls
+			FinalThemeUpdate(form);
+			
+			// Additional specific update for Image section controls
+			ForceUpdateImageSectionGlobally(form);
 		}
 
 		// Force refresh of all controls to ensure theme is applied
@@ -193,6 +206,87 @@ namespace VTFEdit
 
 			// Force all controls to redraw
 			ForceRefreshControl(form);
+			
+			// Force a complete repaint of the entire form
+			form->Refresh();
+			form->Update();
+		}
+		
+		// Global force update for Image section controls
+		static void ForceUpdateImageSectionGlobally(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Find and force update all Image section controls globally
+			ForceUpdateImageSectionGloballyRecursive(form);
+			
+			// Force one more complete update
+			form->Invalidate();
+			form->Update();
+			form->Refresh();
+		}
+		
+		// Recursively find and update Image section controls globally
+		static void ForceUpdateImageSectionGloballyRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Check if this control is part of the Image section
+			if (!String::IsNullOrEmpty(control->Name))
+			{
+				String^ controlName = control->Name->ToLower();
+				if (controlName->Contains("image") || controlName->Contains("flags") || 
+					controlName->Contains("grp") || controlName->Contains("panel") ||
+					controlName->Contains("lbl") || controlName->Contains("num") ||
+					controlName->Contains("btn") || controlName->Contains("check"))
+				{
+					// Force these controls to use exact theme colors
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						control->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+						control->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						control->BackColor = Color::FromArgb(255, 255, 255); // Light background
+						control->ForeColor = Color::Black; // Black text
+					}
+					
+					// Force immediate redraw
+					control->Invalidate();
+					control->Update();
+					control->Refresh();
+					
+					// Force update all child controls
+					for each (Control^ child in control->Controls)
+					{
+						if (child != nullptr)
+						{
+							// Force child controls to use theme colors
+							if (CurrentTheme == ThemeType::Dark)
+							{
+								child->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+								child->ForeColor = Color::White; // White text
+							}
+							else
+							{
+								child->BackColor = Color::FromArgb(255, 255, 255); // Light background
+								child->ForeColor = Color::Black; // Black text
+							}
+							
+							// Force immediate redraw
+							child->Invalidate();
+							child->Update();
+						}
+					}
+				}
+			}
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				ForceUpdateImageSectionGloballyRecursive(child);
+			}
 		}
 
 		// Recursively force refresh all controls
@@ -218,6 +312,9 @@ namespace VTFEdit
 			
 			// Ensure all controls maintain their event handlers and properties
 			EnsureControlFunctionalityRecursive(form);
+			
+			// Force update of specific problematic controls that might not update properly
+			ForceUpdateSpecificControls(form);
 		}
 		
 		// Recursively ensure control functionality
@@ -242,18 +339,378 @@ namespace VTFEdit
 				EnsureControlFunctionalityRecursive(child);
 			}
 		}
+		
+		// Force update of specific problematic controls that might not update properly
+		static void ForceUpdateSpecificControls(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Force update of all controls that might have hardcoded colors
+			ForceUpdateSpecificControlsRecursive(form);
+		}
+		
+		// Recursively force update specific controls
+		static void ForceUpdateSpecificControlsRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Force update of specific control types that commonly have theme issues
+			if (control->GetType() == Panel::typeid || 
+				control->GetType() == GroupBox::typeid ||
+				control->GetType() == TabPage::typeid)
+			{
+				// Force these controls to update their appearance
+				control->BackColor = (CurrentTheme == ThemeType::Dark) ? DarkControlBackColor : LightControlBackColor;
+				control->ForeColor = (CurrentTheme == ThemeType::Dark) ? DarkControlForeColor : LightControlForeColor;
+				
+				// Force immediate redraw
+				control->Invalidate();
+				control->Update();
+			}
+			
+			// Special handling for controls that might have hardcoded colors
+			// Check if the control name contains specific keywords that might indicate theme-sensitive areas
+			if (!String::IsNullOrEmpty(control->Name))
+			{
+				String^ controlName = control->Name->ToLower();
+				if (controlName->Contains("image") || controlName->Contains("panel") || 
+					controlName->Contains("group") || controlName->Contains("tab"))
+				{
+					// Force these controls to use the current theme colors
+					control->BackColor = (CurrentTheme == ThemeType::Dark) ? DarkControlBackColor : LightControlBackColor;
+					control->ForeColor = (CurrentTheme == ThemeType::Dark) ? DarkControlForeColor : LightControlForeColor;
+					
+					// Force immediate redraw
+					control->Invalidate();
+					control->Update();
+				}
+			}
+			
+			// Special handling for Image section controls
+			ForceUpdateImageSectionControls(control);
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				ForceUpdateSpecificControlsRecursive(child);
+			}
+		}
+		
+		// Special handling for Image section controls
+		static void ForceUpdateImageSectionControls(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Check if this is the main Image group box
+			if (!String::IsNullOrEmpty(control->Name) && control->Name->ToLower()->Contains("grpimage"))
+			{
+				// Force the Image group box to use theme colors
+				if (CurrentTheme == ThemeType::Dark)
+				{
+					control->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+					control->ForeColor = Color::White; // White text
+				}
+				else
+				{
+					control->BackColor = Color::FromArgb(255, 255, 255); // Light background
+					control->ForeColor = Color::Black; // Black text
+				}
+				
+				// Force immediate redraw
+				control->Invalidate();
+				control->Update();
+				
+				// Force update all child controls in the Image section
+				ForceUpdateImageChildControls(control);
+			}
+			
+			// Also check for Flags section and other problematic areas
+			if (!String::IsNullOrEmpty(control->Name))
+			{
+				String^ controlName = control->Name->ToLower();
+				if (controlName->Contains("flags") || controlName->Contains("grpflags") ||
+					controlName->Contains("check") || controlName->Contains("checkbox"))
+				{
+					// Force these controls to use theme colors
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						control->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+						control->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						control->BackColor = Color::FromArgb(255, 255, 255); // Light background
+						control->ForeColor = Color::Black; // Black text
+					}
+					
+					// Force immediate redraw
+					control->Invalidate();
+					control->Update();
+					
+					// Force update all child controls
+					ForceUpdateImageChildControls(control);
+				}
+			}
+		}
+		
+		// Force update all child controls in the Image section
+		static void ForceUpdateImageChildControls(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Update all child controls with specific theme colors
+			for each (Control^ child in control->Controls)
+			{
+				if (child == nullptr) continue;
+				
+				// Force update based on control type
+				if (child->GetType() == Label::typeid)
+				{
+					// Labels should inherit parent background but have theme-appropriate text color
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						child->BackColor = Color::Transparent; // Transparent background to show parent
+						child->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						child->BackColor = Color::Transparent; // Transparent background to show parent
+						child->ForeColor = Color::Black; // Black text
+					}
+				}
+				else if (child->GetType() == NumericUpDown::typeid)
+				{
+					// NumericUpDown controls need specific colors
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						child->BackColor = Color::FromArgb(64, 64, 64); // Darker background for input
+						child->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						child->BackColor = Color::FromArgb(240, 240, 240); // Light background for input
+						child->ForeColor = Color::Black; // Black text
+					}
+				}
+				else if (child->GetType() == Button::typeid)
+				{
+					// Buttons need specific colors
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						child->BackColor = Color::FromArgb(64, 64, 64); // Dark button background
+						child->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						child->BackColor = Color::FromArgb(240, 240, 240); // Light button background
+						child->ForeColor = Color::Black; // Black text
+					}
+				}
+				else
+				{
+					// Default theme colors for other controls
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						child->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+						child->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						child->BackColor = Color::FromArgb(255, 255, 255); // Light background
+						child->ForeColor = Color::Black; // Black text
+					}
+				}
+				
+				// Force immediate redraw
+				child->Invalidate();
+				child->Update();
+			}
+		}
+		
+		// Force update all controls with additional checks
+		static void ForceUpdateAllControls(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Force update all controls recursively with additional theme enforcement
+			ForceUpdateAllControlsRecursive(form);
+			
+			// Force the form to completely redraw
+			form->Invalidate();
+			form->Update();
+			form->Refresh();
+			
+			// Additional force update for problematic tab pages
+			ForceUpdateTabPages(form);
+		}
+		
+		// Recursively force update all controls with additional theme enforcement
+		static void ForceUpdateAllControlsRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Force update all control types regardless of their current state
+			try
+			{
+				// Always force the control to use current theme colors
+				control->BackColor = (CurrentTheme == ThemeType::Dark) ? DarkControlBackColor : LightControlBackColor;
+				control->ForeColor = (CurrentTheme == ThemeType::Dark) ? DarkControlForeColor : LightControlForeColor;
+				
+				// Force immediate redraw
+				control->Invalidate();
+				control->Update();
+			}
+			catch (Exception^)
+			{
+				// Some controls don't support these properties, ignore errors
+			}
+			
+			// Special handling for controls that might be in the Image section
+			// These controls often have hardcoded colors that need to be overridden
+			if (control->GetType() == Panel::typeid || 
+				control->GetType() == GroupBox::typeid ||
+				control->GetType() == TabPage::typeid ||
+				control->GetType() == Label::typeid)
+			{
+				// Force these controls to use the exact theme colors
+				if (CurrentTheme == ThemeType::Dark)
+				{
+					control->BackColor = Color::FromArgb(48, 48, 48); // Dark control background
+					control->ForeColor = Color::White; // White text
+				}
+				else
+				{
+					control->BackColor = Color::FromArgb(255, 255, 255); // Light control background
+					control->ForeColor = Color::Black; // Black text
+				}
+				
+				// Force immediate redraw
+				control->Invalidate();
+				control->Update();
+			}
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				ForceUpdateAllControlsRecursive(child);
+			}
+		}
+		
+		// Force update tab pages specifically
+		static void ForceUpdateTabPages(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Find all TabControl and TabPage controls
+			ForceUpdateTabPagesRecursive(form);
+		}
+		
+		// Recursively find and update tab pages
+		static void ForceUpdateTabPagesRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Check if this is a TabControl
+			if (control->GetType() == TabControl::typeid)
+			{
+				TabControl^ tabControl = dynamic_cast<TabControl^>(control);
+				if (tabControl != nullptr)
+				{
+					// Force update the TabControl itself
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						tabControl->BackColor = Color::FromArgb(45, 45, 48); // Dark tab background
+						tabControl->ForeColor = Color::White; // White text for tabs
+					}
+					else
+					{
+						tabControl->BackColor = SystemColors::Control;
+						tabControl->ForeColor = SystemColors::ControlText;
+					}
+					
+					// Force update all TabPages
+					for each (TabPage^ tabPage in tabControl->TabPages)
+					{
+						if (tabPage != nullptr)
+						{
+							if (CurrentTheme == ThemeType::Dark)
+							{
+								tabPage->BackColor = Color::FromArgb(30, 30, 30); // Darker background for content
+								tabPage->ForeColor = Color::White; // White text for content
+							}
+							else
+							{
+								tabPage->BackColor = SystemColors::Control;
+								tabPage->ForeColor = SystemColors::ControlText;
+							}
+							
+							// Force immediate redraw
+							tabPage->Invalidate();
+							tabPage->Update();
+							
+							// Force update all controls in this tab page
+							ForceUpdateImageChildControls(tabPage);
+						}
+					}
+					
+					// Force immediate redraw
+					tabControl->Invalidate();
+					tabControl->Update();
+				}
+			}
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				ForceUpdateTabPagesRecursive(child);
+			}
+		}
 
 		// Toggle between light and dark themes
 		static void ToggleTheme()
 		{
 			currentTheme = (currentTheme == ThemeType::Light) ? ThemeType::Dark : ThemeType::Light;
 			SaveTheme();
+			
+			// Force immediate theme update
+			Application::DoEvents();
+			
+			// Schedule a delayed update to catch any remaining controls
+			ScheduleDelayedThemeUpdate();
+		}
+		
+		// Schedule a delayed theme update to catch any remaining controls
+		static void ScheduleDelayedThemeUpdate()
+		{
+			// Use a timer to delay the update and catch any controls that didn't update immediately
+			System::Windows::Forms::Timer^ delayTimer = gcnew System::Windows::Forms::Timer();
+			delayTimer->Interval = 100; // 100ms delay
+			delayTimer->Tick += gcnew System::EventHandler(&CThemeManager::OnDelayedThemeUpdate);
+			delayTimer->Start();
+		}
+		
+		// Event handler for delayed theme update
+		static void OnDelayedThemeUpdate(Object^ sender, EventArgs^ e)
+		{
+			System::Windows::Forms::Timer^ delayTimer = dynamic_cast<System::Windows::Forms::Timer^>(sender);
+			if (delayTimer != nullptr)
+			{
+				// Force one more complete update after the delay
+				delayTimer->Stop();
+				delete delayTimer;
+				
+				// Force application to process any pending messages
+				Application::DoEvents();
+			}
 		}
 
 		// Apply theme to a control and all its children recursively
 		static void ApplyThemeToControl(Control^ control)
 		{
 			if (control == nullptr) return;
+			
+			// Force the control to update its appearance
+			control->SuspendLayout();
 			
 			// Apply theme based on control type
 			if (control->GetType() == ComboBox::typeid)
@@ -426,6 +883,10 @@ namespace VTFEdit
 				}
 			}
 			
+			// Resume layout and force redraw
+			control->ResumeLayout(false);
+			control->Invalidate();
+			
 			// Apply theme to all child controls
 			for each (Control^ child in control->Controls)
 			{
@@ -472,6 +933,109 @@ namespace VTFEdit
 			{
 				// Silently fail if we can't load the theme, default to Light
 				currentTheme = ThemeType::Light;
+			}
+		}
+		
+		// Final theme update to catch any remaining controls
+		static void FinalThemeUpdate(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Force one more complete update of all controls
+			form->Invalidate();
+			form->Update();
+			form->Refresh();
+			
+			// Force all child controls to update
+			FinalThemeUpdateRecursive(form);
+			
+			// Additional final update for Image section specifically
+			FinalImageSectionUpdate(form);
+		}
+		
+		// Recursively final theme update
+		static void FinalThemeUpdateRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Force final update of all controls
+			control->Invalidate();
+			control->Update();
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				FinalThemeUpdateRecursive(child);
+			}
+		}
+		
+		// Final update specifically for Image section
+		static void FinalImageSectionUpdate(Form^ form)
+		{
+			if (form == nullptr) return;
+			
+			// Find and force update the Image section one more time
+			FinalImageSectionUpdateRecursive(form);
+		}
+		
+		// Recursively find and update Image section controls
+		static void FinalImageSectionUpdateRecursive(Control^ control)
+		{
+			if (control == nullptr) return;
+			
+			// Check if this is the Image section or related controls
+			if (!String::IsNullOrEmpty(control->Name))
+			{
+				String^ controlName = control->Name->ToLower();
+				if (controlName->Contains("image") || controlName->Contains("flags") || 
+					controlName->Contains("grp") || controlName->Contains("panel"))
+				{
+					// Force these controls to use exact theme colors
+					if (CurrentTheme == ThemeType::Dark)
+					{
+						control->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+						control->ForeColor = Color::White; // White text
+					}
+					else
+					{
+						control->BackColor = Color::FromArgb(255, 255, 255); // Light background
+						control->ForeColor = Color::Black; // Black text
+					}
+					
+					// Force immediate redraw
+					control->Invalidate();
+					control->Update();
+					control->Refresh();
+					
+					// Force update all child controls
+					for each (Control^ child in control->Controls)
+					{
+						if (child != nullptr)
+						{
+							// Force child controls to use theme colors
+							if (CurrentTheme == ThemeType::Dark)
+							{
+								child->BackColor = Color::FromArgb(48, 48, 48); // Dark background
+								child->ForeColor = Color::White; // White text
+							}
+							else
+							{
+								child->BackColor = Color::FromArgb(255, 255, 255); // Light background
+								child->ForeColor = Color::Black; // Black text
+							}
+							
+							// Force immediate redraw
+							child->Invalidate();
+							child->Update();
+						}
+					}
+				}
+			}
+			
+			// Recursively process all child controls
+			for each (Control^ child in control->Controls)
+			{
+				FinalImageSectionUpdateRecursive(child);
 			}
 		}
 	};

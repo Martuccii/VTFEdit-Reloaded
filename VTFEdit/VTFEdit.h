@@ -499,6 +499,7 @@ namespace VTFEdit
 				this->btnFileMenu, this->btnEditMenu,
 					this->btnViewMenu, this->btnToolsMenu, this->btnOptionsMenu, this->btnHelpMenu
 			});
+
 			// 
 			// btnFileMenu
 			// 
@@ -508,11 +509,13 @@ namespace VTFEdit
 					this->btnClose, this->btnFileSpace1, this->btnSave, this->btnSaveAs, this->btnFileSpace2, this->btnImport, this->btnExport, this->btnExportAll,
 					this->btnFileSpace3, this->btnRecentFiles, this->btnFileSpace4, this->btnExit
 			});
+
 			this->btnFileMenu->Text = L"&File";
 			// 
 			// btnNew
 			// 
 			this->btnNew->Index = 0;
+
 			this->btnNew->Shortcut = System::Windows::Forms::Shortcut::CtrlN;
 			this->btnNew->Text = L"&New";
 			this->btnNew->Click += gcnew System::EventHandler(this, &CVTFEdit::btnNew_Click);
@@ -520,6 +523,7 @@ namespace VTFEdit
 			// btnOpen
 			// 
 			this->btnOpen->Index = 1;
+
 			this->btnOpen->Shortcut = System::Windows::Forms::Shortcut::CtrlO;
 			this->btnOpen->Text = L"&Open";
 			this->btnOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::btnOpen_Click);
@@ -528,6 +532,7 @@ namespace VTFEdit
 			// 
 			this->btnClose->Enabled = false;
 			this->btnClose->Index = 2;
+
 			this->btnClose->Shortcut = System::Windows::Forms::Shortcut::CtrlQ;
 			this->btnClose->Text = L"&Close";
 			this->btnClose->Click += gcnew System::EventHandler(this, &CVTFEdit::btnClose_Click);
@@ -541,6 +546,7 @@ namespace VTFEdit
 			// 
 			this->btnSave->Enabled = false;
 			this->btnSave->Index = 4;
+
 			this->btnSave->Shortcut = System::Windows::Forms::Shortcut::CtrlS;
 			this->btnSave->Text = L"&Save";
 			this->btnSave->Click += gcnew System::EventHandler(this, &CVTFEdit::btnSave_Click);
@@ -549,6 +555,7 @@ namespace VTFEdit
 			// 
 			this->btnSaveAs->Enabled = false;
 			this->btnSaveAs->Index = 5;
+
 			this->btnSaveAs->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftS;
 			this->btnSaveAs->Text = L"Save &As...";
 			this->btnSaveAs->Click += gcnew System::EventHandler(this, &CVTFEdit::btnSaveAs_Click);
@@ -561,6 +568,7 @@ namespace VTFEdit
 			// btnImport
 			// 
 			this->btnImport->Index = 7;
+
 			this->btnImport->Shortcut = System::Windows::Forms::Shortcut::CtrlI;
 			this->btnImport->Text = L"&Import";
 			this->btnImport->Click += gcnew System::EventHandler(this, &CVTFEdit::btnImport_Click);
@@ -569,6 +577,7 @@ namespace VTFEdit
 			// 
 			this->btnExport->Enabled = false;
 			this->btnExport->Index = 8;
+
 			this->btnExport->Shortcut = System::Windows::Forms::Shortcut::CtrlE;
 			this->btnExport->Text = L"&Export";
 			this->btnExport->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExport_Click);
@@ -577,6 +586,7 @@ namespace VTFEdit
 			// 
 			this->btnExportAll->Enabled = false;
 			this->btnExportAll->Index = 9;
+
 			this->btnExportAll->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftE;
 			this->btnExportAll->Text = L"&Export All";
 			this->btnExportAll->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExportAll_Click);
@@ -589,6 +599,7 @@ namespace VTFEdit
 			// btnRecentFiles
 			// 
 			this->btnRecentFiles->Index = 11;
+
 			this->btnRecentFiles->Text = L"&Recent Files";
 			this->btnRecentFiles->Visible = false;
 			// 
@@ -601,6 +612,7 @@ namespace VTFEdit
 			// btnExit
 			// 
 			this->btnExit->Index = 13;
+
 			this->btnExit->Shortcut = System::Windows::Forms::Shortcut::AltF4;
 			this->btnExit->Text = L"E&xit";
 			this->btnExit->Click += gcnew System::EventHandler(this, &CVTFEdit::btnExit_Click);
@@ -609,12 +621,14 @@ namespace VTFEdit
 			// 
 			this->btnEditMenu->Index = 1;
 			this->btnEditMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(2) { this->btnCopy, this->btnPaste });
+
 			this->btnEditMenu->Text = L"&Edit";
 			// 
 			// btnCopy
 			// 
 			this->btnCopy->Enabled = false;
 			this->btnCopy->Index = 0;
+
 			this->btnCopy->Shortcut = System::Windows::Forms::Shortcut::CtrlC;
 			this->btnCopy->Text = L"&Copy";
 			this->btnCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::btnCopy_Click);
@@ -623,6 +637,7 @@ namespace VTFEdit
 			// 
 			this->btnPaste->Enabled = false;
 			this->btnPaste->Index = 1;
+
 			this->btnPaste->Shortcut = System::Windows::Forms::Shortcut::CtrlV;
 			this->btnPaste->Text = L"&Paste";
 			this->btnPaste->Click += gcnew System::EventHandler(this, &CVTFEdit::btnPaste_Click);
@@ -634,11 +649,13 @@ namespace VTFEdit
 				this->btnThemeMenu, this->btnChannelMenu, this->btnMask,
 					this->btnTile
 			});
+
 			this->btnViewMenu->Text = L"&View";
 			// 
 			// btnThemeMenu
 			// 
 			this->btnThemeMenu->Index = 0;
+
 			this->btnThemeMenu->Text = L"&Theme";
 			this->btnThemeMenu->Click += gcnew System::EventHandler(this, &CVTFEdit::btnThemeMenu_Click);
 			// 
@@ -649,12 +666,14 @@ namespace VTFEdit
 				this->btnChannelRGB,
 					this->btnChannelR, this->btnChannelG, this->btnChannelB, this->btnChannelA
 			});
+
 			this->btnChannelMenu->Text = L"&Channel";
 			// 
 			// btnChannelRGB
 			// 
 			this->btnChannelRGB->Checked = true;
 			this->btnChannelRGB->Index = 0;
+
 			this->btnChannelRGB->RadioCheck = true;
 			this->btnChannelRGB->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftC;
 			this->btnChannelRGB->Text = L"RGB";
@@ -663,6 +682,7 @@ namespace VTFEdit
 			// btnChannelR
 			// 
 			this->btnChannelR->Index = 1;
+
 			this->btnChannelR->RadioCheck = true;
 			this->btnChannelR->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftR;
 			this->btnChannelR->Text = L"R";
@@ -671,6 +691,7 @@ namespace VTFEdit
 			// btnChannelG
 			// 
 			this->btnChannelG->Index = 2;
+
 			this->btnChannelG->RadioCheck = true;
 			this->btnChannelG->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftG;
 			this->btnChannelG->Text = L"G";
@@ -679,6 +700,7 @@ namespace VTFEdit
 			// btnChannelB
 			// 
 			this->btnChannelB->Index = 3;
+
 			this->btnChannelB->RadioCheck = true;
 			this->btnChannelB->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftB;
 			this->btnChannelB->Text = L"B";
@@ -687,6 +709,7 @@ namespace VTFEdit
 			// btnChannelA
 			// 
 			this->btnChannelA->Index = 4;
+
 			this->btnChannelA->RadioCheck = true;
 			this->btnChannelA->Shortcut = System::Windows::Forms::Shortcut::CtrlShiftA;
 			this->btnChannelA->Text = L"A";
@@ -695,6 +718,7 @@ namespace VTFEdit
 			// btnMask
 			// 
 			this->btnMask->Index = 2;
+
 			this->btnMask->Shortcut = System::Windows::Forms::Shortcut::CtrlW;
 			this->btnMask->Text = L"&Mask";
 			this->btnMask->Click += gcnew System::EventHandler(this, &CVTFEdit::btnMask_Click);
@@ -702,7 +726,7 @@ namespace VTFEdit
 			// btnTile
 			// 
 			this->btnTile->Index = 3;
-			this->btnTile->Shortcut = System::Windows::Forms::Shortcut::CtrlT;
+
 			this->btnTile->Text = L"&Tile";
 			this->btnTile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnTile_Click);
 			// 
@@ -713,23 +737,27 @@ namespace VTFEdit
 				this->btnCreateVMTFile,
 					this->btnConvertFolder, this->btnConvertWADFile
 			});
+
 			this->btnToolsMenu->Text = L"&Tools";
 			// 
 			// btnCreateVMTFile
 			// 
 			this->btnCreateVMTFile->Index = 0;
+
 			this->btnCreateVMTFile->Text = L"Create &VMT File";
 			this->btnCreateVMTFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnCreateVMTFile_Click);
 			// 
 			// btnConvertFolder
 			// 
 			this->btnConvertFolder->Index = 1;
+
 			this->btnConvertFolder->Text = L"Convert &Folder";
 			this->btnConvertFolder->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertFolder_Click);
 			// 
 			// btnConvertWADFile
 			// 
 			this->btnConvertWADFile->Index = 2;
+
 			this->btnConvertWADFile->Text = L"Convert &WAD File";
 			this->btnConvertWADFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnConvertWADFile_Click);
 			// 
@@ -740,11 +768,13 @@ namespace VTFEdit
 				this->btnAutoCreateVMTFile,
 					this->btnOptionsSpace1, this->btnFileMapping, this->btnVolatileAccess
 			});
+
 			this->btnOptionsMenu->Text = L"&Options";
 			// 
 			// btnAutoCreateVMTFile
 			// 
 			this->btnAutoCreateVMTFile->Index = 0;
+
 			this->btnAutoCreateVMTFile->Text = L"&Auto Create VMT File";
 			this->btnAutoCreateVMTFile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAutoCreateVMTFile_Click);
 			// 
@@ -756,12 +786,14 @@ namespace VTFEdit
 			// btnFileMapping
 			// 
 			this->btnFileMapping->Index = 2;
+
 			this->btnFileMapping->Text = L"File &Mapping";
 			this->btnFileMapping->Click += gcnew System::EventHandler(this, &CVTFEdit::btnFileMapping_Click);
 			// 
 			// btnVolatileAccess
 			// 
 			this->btnVolatileAccess->Index = 3;
+
 			this->btnVolatileAccess->Text = L"&Volatile Access";
 			this->btnVolatileAccess->Click += gcnew System::EventHandler(this, &CVTFEdit::btnVolatileAccess_Click);
 			// 
@@ -769,11 +801,13 @@ namespace VTFEdit
 			// 
 			this->btnHelpMenu->Index = 5;
 			this->btnHelpMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(1) { this->btnAbout });
+
 			this->btnHelpMenu->Text = L"&Help";
 			// 
 			// btnAbout
 			// 
 			this->btnAbout->Index = 0;
+
 			this->btnAbout->Text = L"&About";
 			this->btnAbout->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAbout_Click);
 			// 
@@ -785,14 +819,16 @@ namespace VTFEdit
 			// 
 			// barStatus
 			// 
-			this->barStatus->Location = System::Drawing::Point(0, 544);
+			this->barStatus->BackColor = System::Drawing::Color::FromArgb(240, 240, 240);
+			this->barStatus->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->barStatus->Location = System::Drawing::Point(0, 900);
 			this->barStatus->Name = L"barStatus";
 			this->barStatus->Panels->AddRange(gcnew cli::array< System::Windows::Forms::StatusBarPanel^  >(3) {
 				this->pnlFileName, this->pnlInfo1,
 					this->pnlInfo2
 			});
 			this->barStatus->ShowPanels = true;
-			this->barStatus->Size = System::Drawing::Size(784, 17);
+			this->barStatus->Size = System::Drawing::Size(1280, 24);
 			this->barStatus->TabIndex = 3;
 			// 
 			// pnlFileName
@@ -818,13 +854,14 @@ namespace VTFEdit
 			// 
 			// pnlSidebar
 			// 
-			this->pnlSidebar->BackColor = System::Drawing::SystemColors::Control;
+			this->pnlSidebar->BackColor = System::Drawing::Color::FromArgb(245, 245, 245);
+			this->pnlSidebar->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->pnlSidebar->Controls->Add(this->tabSidebar);
 			this->pnlSidebar->Dock = System::Windows::Forms::DockStyle::Left;
-			this->pnlSidebar->Location = System::Drawing::Point(0, 43);
-			this->pnlSidebar->MinimumSize = System::Drawing::Size(228, 0);
+			this->pnlSidebar->Location = System::Drawing::Point(0, 64);
+			this->pnlSidebar->MinimumSize = System::Drawing::Size(320, 0);
 			this->pnlSidebar->Name = L"pnlSidebar";
-			this->pnlSidebar->Size = System::Drawing::Size(228, 501);
+			this->pnlSidebar->Size = System::Drawing::Size(320, 836);
 			this->pnlSidebar->TabIndex = 0;
 			// 
 			// tabSidebar
@@ -832,16 +869,17 @@ namespace VTFEdit
 			this->tabSidebar->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->tabSidebar->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->tabSidebar->Controls->Add(this->tabFileSystem);
 			this->tabSidebar->Controls->Add(this->tabImage);
 			this->tabSidebar->Controls->Add(this->tabInfo);
 			this->tabSidebar->Controls->Add(this->tabResources);
-			this->tabSidebar->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->tabSidebar->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->tabSidebar->Location = System::Drawing::Point(6, 6);
+			this->tabSidebar->Location = System::Drawing::Point(12, 12);
 			this->tabSidebar->Name = L"tabSidebar";
 			this->tabSidebar->SelectedIndex = 0;
-			this->tabSidebar->Size = System::Drawing::Size(216, 507);
+			this->tabSidebar->Size = System::Drawing::Size(296, 812);
 			this->tabSidebar->TabIndex = 2;
 			// 
 			// tabFileSystem
@@ -858,11 +896,13 @@ namespace VTFEdit
 			// 
 			this->grpGoto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpGoto->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpGoto->Controls->Add(this->cboGoto);
-			this->grpGoto->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpGoto->Location = System::Drawing::Point(7, 6);
+			this->grpGoto->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpGoto->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpGoto->Location = System::Drawing::Point(12, 12);
 			this->grpGoto->Name = L"grpGoto";
-			this->grpGoto->Size = System::Drawing::Size(198, 39);
+			this->grpGoto->Size = System::Drawing::Size(272, 56);
 			this->grpGoto->TabIndex = 1;
 			this->grpGoto->TabStop = false;
 			this->grpGoto->Text = L"Goto:";
@@ -871,11 +911,14 @@ namespace VTFEdit
 			// 
 			this->cboGoto->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->cboGoto->BackColor = System::Drawing::Color::FromArgb(255, 255, 255);
 			this->cboGoto->ContextMenu = this->mnuGoto;
 			this->cboGoto->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cboGoto->Location = System::Drawing::Point(7, 12);
+			this->cboGoto->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->cboGoto->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->cboGoto->Location = System::Drawing::Point(12, 24);
 			this->cboGoto->Name = L"cboGoto";
-			this->cboGoto->Size = System::Drawing::Size(186, 21);
+			this->cboGoto->Size = System::Drawing::Size(248, 23);
 			this->cboGoto->TabIndex = 0;
 			this->cboGoto->SelectedIndexChanged += gcnew System::EventHandler(this, &CVTFEdit::cboGoto_SelectedIndexChanged);
 			// 
@@ -901,11 +944,13 @@ namespace VTFEdit
 			this->grpFileSystem->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpFileSystem->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpFileSystem->Controls->Add(this->treFileSystem);
-			this->grpFileSystem->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFileSystem->Location = System::Drawing::Point(7, 50);
+			this->grpFileSystem->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpFileSystem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpFileSystem->Location = System::Drawing::Point(12, 76);
 			this->grpFileSystem->Name = L"grpFileSystem";
-			this->grpFileSystem->Size = System::Drawing::Size(198, 417);
+			this->grpFileSystem->Size = System::Drawing::Size(272, 732);
 			this->grpFileSystem->TabIndex = 0;
 			this->grpFileSystem->TabStop = false;
 			this->grpFileSystem->Text = L"File System:";
@@ -915,11 +960,14 @@ namespace VTFEdit
 			this->treFileSystem->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->treFileSystem->BackColor = System::Drawing::Color::FromArgb(255, 255, 255);
+			this->treFileSystem->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->treFileSystem->ContextMenu = this->mnuFileSystem;
+			this->treFileSystem->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->treFileSystem->HideSelection = false;
-			this->treFileSystem->Location = System::Drawing::Point(7, 12);
+			this->treFileSystem->Location = System::Drawing::Point(12, 24);
 			this->treFileSystem->Name = L"treFileSystem";
-			this->treFileSystem->Size = System::Drawing::Size(186, 399);
+			this->treFileSystem->Size = System::Drawing::Size(248, 700);
 			this->treFileSystem->TabIndex = 0;
 			this->treFileSystem->AfterCollapse += gcnew System::Windows::Forms::TreeViewEventHandler(this, &CVTFEdit::treFileSystem_AfterCollapse);
 			this->treFileSystem->BeforeExpand += gcnew System::Windows::Forms::TreeViewCancelEventHandler(this, &CVTFEdit::treFileSystem_BeforeExpand);
@@ -1011,7 +1059,7 @@ namespace VTFEdit
 			this->tabImage->Controls->Add(this->grpFlags);
 			this->tabImage->Location = System::Drawing::Point(4, 22);
 			this->tabImage->Name = L"tabImage";
-			this->tabImage->Size = System::Drawing::Size(208, 481);
+			this->tabImage->Size = System::Drawing::Size(256, 680);
 			this->tabImage->TabIndex = 0;
 			this->tabImage->Text = L"Image";
 			// 
@@ -1031,9 +1079,9 @@ namespace VTFEdit
 			this->grpImage->Controls->Add(this->numFrame);
 			this->grpImage->Controls->Add(this->lblFrame);
 			this->grpImage->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpImage->Location = System::Drawing::Point(7, 6);
+			this->grpImage->Location = System::Drawing::Point(8, 8);
 			this->grpImage->Name = L"grpImage";
-			this->grpImage->Size = System::Drawing::Size(200, 138);
+			this->grpImage->Size = System::Drawing::Size(240, 160);
 			this->grpImage->TabIndex = 0;
 			this->grpImage->TabStop = false;
 			this->grpImage->Text = L"Image:";
@@ -1075,10 +1123,10 @@ namespace VTFEdit
 			// 
 			this->numSlice->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numSlice->Location = System::Drawing::Point(68, 55);
+			this->numSlice->Location = System::Drawing::Point(72, 55);
 			this->numSlice->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numSlice->Name = L"numSlice";
-			this->numSlice->Size = System::Drawing::Size(127, 20);
+			this->numSlice->Size = System::Drawing::Size(160, 20);
 			this->numSlice->TabIndex = 5;
 			this->numSlice->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
@@ -1094,10 +1142,10 @@ namespace VTFEdit
 			// 
 			this->numMipmap->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numMipmap->Location = System::Drawing::Point(68, 74);
+			this->numMipmap->Location = System::Drawing::Point(72, 74);
 			this->numMipmap->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numMipmap->Name = L"numMipmap";
-			this->numMipmap->Size = System::Drawing::Size(127, 20);
+			this->numMipmap->Size = System::Drawing::Size(160, 20);
 			this->numMipmap->TabIndex = 7;
 			this->numMipmap->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
@@ -1105,10 +1153,10 @@ namespace VTFEdit
 			// 
 			this->numFace->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numFace->Location = System::Drawing::Point(68, 37);
+			this->numFace->Location = System::Drawing::Point(72, 37);
 			this->numFace->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numFace->Name = L"numFace";
-			this->numFace->Size = System::Drawing::Size(127, 20);
+			this->numFace->Size = System::Drawing::Size(160, 20);
 			this->numFace->TabIndex = 3;
 			this->numFace->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
@@ -1124,10 +1172,10 @@ namespace VTFEdit
 			// 
 			this->numFrame->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numFrame->Location = System::Drawing::Point(68, 20);
+			this->numFrame->Location = System::Drawing::Point(72, 20);
 			this->numFrame->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numFrame->Name = L"numFrame";
-			this->numFrame->Size = System::Drawing::Size(127, 20);
+			this->numFrame->Size = System::Drawing::Size(160, 20);
 			this->numFrame->TabIndex = 1;
 			this->numFrame->ValueChanged += gcnew System::EventHandler(this, &CVTFEdit::numVTFFile_ValueChanged);
 			// 
@@ -1145,9 +1193,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->btnAnimate->Enabled = false;
 			this->btnAnimate->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->btnAnimate->Location = System::Drawing::Point(6, 112);
+			this->btnAnimate->Location = System::Drawing::Point(8, 128);
 			this->btnAnimate->Name = L"btnAnimate";
-			this->btnAnimate->Size = System::Drawing::Size(189, 21);
+			this->btnAnimate->Size = System::Drawing::Size(224, 24);
 			this->btnAnimate->TabIndex = 14;
 			this->btnAnimate->Click += gcnew System::EventHandler(this, &CVTFEdit::btnAnimate_Click);
 			// 
@@ -1158,9 +1206,9 @@ namespace VTFEdit
 				| System::Windows::Forms::AnchorStyles::Right));
 			this->grpFlags->Controls->Add(this->lstFlags);
 			this->grpFlags->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFlags->Location = System::Drawing::Point(7, 150);
+			this->grpFlags->Location = System::Drawing::Point(8, 176);
 			this->grpFlags->Name = L"grpFlags";
-			this->grpFlags->Size = System::Drawing::Size(195, 328);
+			this->grpFlags->Size = System::Drawing::Size(240, 496);
 			this->grpFlags->TabIndex = 1;
 			this->grpFlags->TabStop = false;
 			this->grpFlags->Text = L"Flags:";
@@ -1173,9 +1221,9 @@ namespace VTFEdit
 			this->lstFlags->CheckOnClick = true;
 			this->lstFlags->ForeColor = System::Drawing::SystemColors::WindowText;
 			this->lstFlags->HorizontalScrollbar = true;
-			this->lstFlags->Location = System::Drawing::Point(7, 22);
+			this->lstFlags->Location = System::Drawing::Point(8, 24);
 			this->lstFlags->Name = L"lstFlags";
-			this->lstFlags->Size = System::Drawing::Size(172, 289);
+			this->lstFlags->Size = System::Drawing::Size(224, 464);
 			this->lstFlags->TabIndex = 3;
 			this->lstFlags->TabStop = false;
 			this->lstFlags->ItemCheck += gcnew System::Windows::Forms::ItemCheckEventHandler(this, &CVTFEdit::lstFlags_ItemCheck);
@@ -1187,7 +1235,7 @@ namespace VTFEdit
 			this->tabInfo->Controls->Add(this->grpFileInfo);
 			this->tabInfo->Location = System::Drawing::Point(4, 22);
 			this->tabInfo->Name = L"tabInfo";
-			this->tabInfo->Size = System::Drawing::Size(208, 481);
+			this->tabInfo->Size = System::Drawing::Size(256, 680);
 			this->tabInfo->TabIndex = 1;
 			this->tabInfo->Text = L"Info";
 			// 
@@ -1218,9 +1266,9 @@ namespace VTFEdit
 			this->grpImageInfo->Controls->Add(this->lblImageWidth);
 			this->grpImageInfo->Controls->Add(this->lblImageWidthLabel);
 			this->grpImageInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpImageInfo->Location = System::Drawing::Point(7, 76);
+			this->grpImageInfo->Location = System::Drawing::Point(8, 88);
 			this->grpImageInfo->Name = L"grpImageInfo";
-			this->grpImageInfo->Size = System::Drawing::Size(198, 243);
+			this->grpImageInfo->Size = System::Drawing::Size(240, 280);
 			this->grpImageInfo->TabIndex = 1;
 			this->grpImageInfo->TabStop = false;
 			this->grpImageInfo->Text = L"Image Info:";
@@ -1229,9 +1277,9 @@ namespace VTFEdit
 			// 
 			this->lblImageSlices->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageSlices->Location = System::Drawing::Point(70, 132);
+			this->lblImageSlices->Location = System::Drawing::Point(72, 132);
 			this->lblImageSlices->Name = L"lblImageSlices";
-			this->lblImageSlices->Size = System::Drawing::Size(123, 18);
+			this->lblImageSlices->Size = System::Drawing::Size(160, 18);
 			this->lblImageSlices->TabIndex = 13;
 			// 
 			// lblImageSlicesLabel
@@ -1246,28 +1294,28 @@ namespace VTFEdit
 			// 
 			this->numImageBumpmapScale->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numImageBumpmapScale->Location = System::Drawing::Point(70, 171);
+			this->numImageBumpmapScale->Location = System::Drawing::Point(72, 171);
 			this->numImageBumpmapScale->Name = L"numImageBumpmapScale";
-			this->numImageBumpmapScale->Size = System::Drawing::Size(123, 20);
+			this->numImageBumpmapScale->Size = System::Drawing::Size(160, 20);
 			this->numImageBumpmapScale->TabIndex = 17;
 			// 
 			// numImageStartFrame
 			// 
 			this->numImageStartFrame->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->numImageStartFrame->Location = System::Drawing::Point(70, 94);
+			this->numImageStartFrame->Location = System::Drawing::Point(72, 94);
 			this->numImageStartFrame->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 0, 0, 0, 0 });
 			this->numImageStartFrame->Name = L"numImageStartFrame";
-			this->numImageStartFrame->Size = System::Drawing::Size(123, 20);
+			this->numImageStartFrame->Size = System::Drawing::Size(160, 20);
 			this->numImageStartFrame->TabIndex = 9;
 			// 
 			// lblImageReflectivity
 			// 
 			this->lblImageReflectivity->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageReflectivity->Location = System::Drawing::Point(69, 194);
+			this->lblImageReflectivity->Location = System::Drawing::Point(72, 194);
 			this->lblImageReflectivity->Name = L"lblImageReflectivity";
-			this->lblImageReflectivity->Size = System::Drawing::Size(123, 18);
+			this->lblImageReflectivity->Size = System::Drawing::Size(160, 18);
 			this->lblImageReflectivity->TabIndex = 19;
 			// 
 			// lblImageReflectivityLabel
@@ -1298,9 +1346,9 @@ namespace VTFEdit
 			// 
 			this->lblImageMipmaps->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageMipmaps->Location = System::Drawing::Point(70, 152);
+			this->lblImageMipmaps->Location = System::Drawing::Point(72, 152);
 			this->lblImageMipmaps->Name = L"lblImageMipmaps";
-			this->lblImageMipmaps->Size = System::Drawing::Size(123, 18);
+			this->lblImageMipmaps->Size = System::Drawing::Size(160, 18);
 			this->lblImageMipmaps->TabIndex = 15;
 			// 
 			// lblImageMipmapsLabel
@@ -1315,9 +1363,9 @@ namespace VTFEdit
 			// 
 			this->lblImageFaces->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFaces->Location = System::Drawing::Point(70, 114);
+			this->lblImageFaces->Location = System::Drawing::Point(72, 114);
 			this->lblImageFaces->Name = L"lblImageFaces";
-			this->lblImageFaces->Size = System::Drawing::Size(123, 18);
+			this->lblImageFaces->Size = System::Drawing::Size(160, 18);
 			this->lblImageFaces->TabIndex = 11;
 			// 
 			// lblImageFacesLabel
@@ -1332,9 +1380,9 @@ namespace VTFEdit
 			// 
 			this->lblImageFrames->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFrames->Location = System::Drawing::Point(70, 76);
+			this->lblImageFrames->Location = System::Drawing::Point(72, 76);
 			this->lblImageFrames->Name = L"lblImageFrames";
-			this->lblImageFrames->Size = System::Drawing::Size(123, 17);
+			this->lblImageFrames->Size = System::Drawing::Size(160, 17);
 			this->lblImageFrames->TabIndex = 7;
 			// 
 			// lblImageFramesLabel
@@ -1349,9 +1397,9 @@ namespace VTFEdit
 			// 
 			this->lblImageFormat->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageFormat->Location = System::Drawing::Point(70, 57);
+			this->lblImageFormat->Location = System::Drawing::Point(72, 57);
 			this->lblImageFormat->Name = L"lblImageFormat";
-			this->lblImageFormat->Size = System::Drawing::Size(123, 19);
+			this->lblImageFormat->Size = System::Drawing::Size(160, 19);
 			this->lblImageFormat->TabIndex = 5;
 			// 
 			// lblImageFormatLabel
@@ -1366,9 +1414,9 @@ namespace VTFEdit
 			// 
 			this->lblImageHeight->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageHeight->Location = System::Drawing::Point(70, 37);
+			this->lblImageHeight->Location = System::Drawing::Point(72, 37);
 			this->lblImageHeight->Name = L"lblImageHeight";
-			this->lblImageHeight->Size = System::Drawing::Size(123, 19);
+			this->lblImageHeight->Size = System::Drawing::Size(160, 19);
 			this->lblImageHeight->TabIndex = 3;
 			// 
 			// lblImageHeightLabel
@@ -1383,9 +1431,9 @@ namespace VTFEdit
 			// 
 			this->lblImageWidth->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->lblImageWidth->Location = System::Drawing::Point(70, 20);
+			this->lblImageWidth->Location = System::Drawing::Point(72, 20);
 			this->lblImageWidth->Name = L"lblImageWidth";
-			this->lblImageWidth->Size = System::Drawing::Size(123, 17);
+			this->lblImageWidth->Size = System::Drawing::Size(160, 17);
 			this->lblImageWidth->TabIndex = 1;
 			// 
 			// lblImageWidthLabel
@@ -1400,16 +1448,18 @@ namespace VTFEdit
 			// 
 			this->grpThumbnailInfo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpThumbnailInfo->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailFormat);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailFormatLabel);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailHeight);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailHeightLabel);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailWidth);
 			this->grpThumbnailInfo->Controls->Add(this->lblThumbnailWidthLabel);
-			this->grpThumbnailInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpThumbnailInfo->Location = System::Drawing::Point(7, 325);
+			this->grpThumbnailInfo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpThumbnailInfo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpThumbnailInfo->Location = System::Drawing::Point(8, 325);
 			this->grpThumbnailInfo->Name = L"grpThumbnailInfo";
-			this->grpThumbnailInfo->Size = System::Drawing::Size(198, 82);
+			this->grpThumbnailInfo->Size = System::Drawing::Size(240, 82);
 			this->grpThumbnailInfo->TabIndex = 2;
 			this->grpThumbnailInfo->TabStop = false;
 			this->grpThumbnailInfo->Text = L"Thumbnail Info:";
@@ -1469,14 +1519,16 @@ namespace VTFEdit
 			// 
 			this->grpFileInfo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpFileInfo->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpFileInfo->Controls->Add(this->lblFileSize);
 			this->grpFileInfo->Controls->Add(this->lblFileSizeLabel);
 			this->grpFileInfo->Controls->Add(this->lblFileVersion);
 			this->grpFileInfo->Controls->Add(this->lblFileVersionLabel);
-			this->grpFileInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpFileInfo->Location = System::Drawing::Point(7, 6);
+			this->grpFileInfo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpFileInfo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpFileInfo->Location = System::Drawing::Point(8, 8);
 			this->grpFileInfo->Name = L"grpFileInfo";
-			this->grpFileInfo->Size = System::Drawing::Size(198, 64);
+			this->grpFileInfo->Size = System::Drawing::Size(240, 64);
 			this->grpFileInfo->TabIndex = 0;
 			this->grpFileInfo->TabStop = false;
 			this->grpFileInfo->Text = L"File Info:";
@@ -1517,11 +1569,13 @@ namespace VTFEdit
 			// 
 			// tabResources
 			// 
+			this->tabResources->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->tabResources->Controls->Add(this->grpResources);
 			this->tabResources->Controls->Add(this->grpResourceInfo);
+			this->tabResources->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->tabResources->Location = System::Drawing::Point(4, 22);
 			this->tabResources->Name = L"tabResources";
-			this->tabResources->Size = System::Drawing::Size(208, 481);
+			this->tabResources->Size = System::Drawing::Size(256, 680);
 			this->tabResources->TabIndex = 3;
 			this->tabResources->Text = L"Resources";
 			// 
@@ -1530,11 +1584,13 @@ namespace VTFEdit
 			this->grpResources->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpResources->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpResources->Controls->Add(this->treResources);
-			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpResources->Location = System::Drawing::Point(7, 57);
+			this->grpResources->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpResources->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpResources->Location = System::Drawing::Point(8, 57);
 			this->grpResources->Name = L"grpResources";
-			this->grpResources->Size = System::Drawing::Size(198, 422);
+			this->grpResources->Size = System::Drawing::Size(240, 422);
 			this->grpResources->TabIndex = 2;
 			this->grpResources->TabStop = false;
 			this->grpResources->Text = L"Resources:";
@@ -1544,21 +1600,26 @@ namespace VTFEdit
 			this->treResources->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
 				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
-			this->treResources->Location = System::Drawing::Point(7, 12);
+			this->treResources->BackColor = System::Drawing::Color::FromArgb(255, 255, 255);
+			this->treResources->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->treResources->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->treResources->Location = System::Drawing::Point(8, 24);
 			this->treResources->Name = L"treResources";
-			this->treResources->Size = System::Drawing::Size(186, 404);
+			this->treResources->Size = System::Drawing::Size(224, 388);
 			this->treResources->TabIndex = 0;
 			// 
 			// grpResourceInfo
 			// 
 			this->grpResourceInfo->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->grpResourceInfo->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->grpResourceInfo->Controls->Add(this->lblResourceCount);
 			this->grpResourceInfo->Controls->Add(this->lblResourceCountLabel);
-			this->grpResourceInfo->FlatStyle = System::Windows::Forms::FlatStyle::System;
-			this->grpResourceInfo->Location = System::Drawing::Point(7, 6);
+			this->grpResourceInfo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->grpResourceInfo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->grpResourceInfo->Location = System::Drawing::Point(8, 8);
 			this->grpResourceInfo->Name = L"grpResourceInfo";
-			this->grpResourceInfo->Size = System::Drawing::Size(198, 44);
+			this->grpResourceInfo->Size = System::Drawing::Size(240, 44);
 			this->grpResourceInfo->TabIndex = 1;
 			this->grpResourceInfo->TabStop = false;
 			this->grpResourceInfo->Text = L"Resource Info:";
@@ -1599,15 +1660,16 @@ namespace VTFEdit
 			// 
 			this->pnlMain->AllowDrop = true;
 			this->pnlMain->AutoScroll = true;
+			this->pnlMain->BackColor = System::Drawing::Color::FromArgb(255, 255, 255);
 			this->pnlMain->Controls->Add(this->picVTFFileBR);
 			this->pnlMain->Controls->Add(this->picVTFFileBL);
 			this->pnlMain->Controls->Add(this->picVTFFileTR);
 			this->pnlMain->Controls->Add(this->picVTFFileTL);
 			this->pnlMain->Controls->Add(this->txtVMTFile);
 			this->pnlMain->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->pnlMain->Location = System::Drawing::Point(231, 43);
+			this->pnlMain->Location = System::Drawing::Point(328, 64);
 			this->pnlMain->Name = L"pnlMain";
-			this->pnlMain->Size = System::Drawing::Size(553, 501);
+			this->pnlMain->Size = System::Drawing::Size(952, 836);
 			this->pnlMain->TabIndex = 2;
 			this->pnlMain->DragDrop += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragDrop);
 			this->pnlMain->DragEnter += gcnew System::Windows::Forms::DragEventHandler(this, &CVTFEdit::Control_DragEnter);
@@ -1816,6 +1878,8 @@ namespace VTFEdit
 			// toolStripView
 			// 
 			this->toolStripView->AutoSize = false;
+			this->toolStripView->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
+			this->toolStripView->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripView->GripStyle = System::Windows::Forms::ToolStripGripStyle::Hidden;
 			this->toolStripView->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(16) {
 				this->toolStripOpen,
@@ -1825,106 +1889,113 @@ namespace VTFEdit
 			});
 			this->toolStripView->Location = System::Drawing::Point(0, 0);
 			this->toolStripView->Name = L"toolStripView";
-			this->toolStripView->Padding = System::Windows::Forms::Padding(0);
-			this->toolStripView->RenderMode = System::Windows::Forms::ToolStripRenderMode::System;
-			this->toolStripView->Size = System::Drawing::Size(784, 43);
+			this->toolStripView->Padding = System::Windows::Forms::Padding(12, 8, 12, 8);
+			this->toolStripView->RenderMode = System::Windows::Forms::ToolStripRenderMode::Professional;
+			this->toolStripView->Size = System::Drawing::Size(1280, 80);
 			this->toolStripView->TabIndex = 6;
-			this->toolStripView->Text = L"toolStpView";
+			this->toolStripView->Text = L"toolStripView";
 			// 
 			// toolStripOpen
 			// 
 			this->toolStripOpen->AutoSize = false;
-			this->toolStripOpen->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripOpen->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
+			this->toolStripOpen->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripOpen->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripOpen.Image")));
 			this->toolStripOpen->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripOpen->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripOpen->Name = L"toolStripOpen";
-			this->toolStripOpen->Size = System::Drawing::Size(40, 40);
-			this->toolStripOpen->Text = L"Open";
+			this->toolStripOpen->Size = System::Drawing::Size(56, 56);
+	
 			this->toolStripOpen->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripOpen_Click);
 			// 
 			// toolStripClose
 			// 
 			this->toolStripClose->AutoSize = false;
-			this->toolStripClose->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripClose->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripClose->Enabled = false;
+			this->toolStripClose->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripClose->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripClose.Image")));
 			this->toolStripClose->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripClose->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripClose->Name = L"toolStripClose";
-			this->toolStripClose->Size = System::Drawing::Size(40, 40);
-			this->toolStripClose->Text = L"Close";
+			this->toolStripClose->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripClose->ToolTipText = L"Close";
 			this->toolStripClose->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripClose_Click);
 			// 
 			// toolStripImport
 			// 
 			this->toolStripImport->AutoSize = false;
-			this->toolStripImport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripImport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
+			this->toolStripImport->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripImport->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripImport.Image")));
 			this->toolStripImport->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripImport->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripImport->Name = L"toolStripImport";
-			this->toolStripImport->Size = System::Drawing::Size(40, 40);
-			this->toolStripImport->Text = L"Import";
+			this->toolStripImport->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripImport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripImport_Click);
 			// 
 			// toolStripExport
 			// 
 			this->toolStripExport->AutoSize = false;
-			this->toolStripExport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripExport->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripExport->Enabled = false;
+			this->toolStripExport->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripExport->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripExport.Image")));
 			this->toolStripExport->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripExport->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripExport->Name = L"toolStripExport";
-			this->toolStripExport->Size = System::Drawing::Size(40, 40);
-			this->toolStripExport->Text = L"Export";
+			this->toolStripExport->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripExport->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripExport_Click);
 			// 
 			// toolStripSave
 			// 
 			this->toolStripSave->AutoSize = false;
-			this->toolStripSave->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripSave->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripSave->Enabled = false;
+			this->toolStripSave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripSave->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripSave.Image")));
 			this->toolStripSave->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripSave->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripSave->Name = L"toolStripSave";
-			this->toolStripSave->Size = System::Drawing::Size(40, 40);
-			this->toolStripSave->Text = L"Save";
+			this->toolStripSave->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripSave->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripSave_Click);
 			// 
 			// toolStripCopy
 			// 
 			this->toolStripCopy->AutoSize = false;
-			this->toolStripCopy->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripCopy->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripCopy->Enabled = false;
+			this->toolStripCopy->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripCopy->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripCopy.Image")));
 			this->toolStripCopy->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripCopy->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripCopy->Name = L"toolStripCopy";
-			this->toolStripCopy->Size = System::Drawing::Size(40, 40);
-			this->toolStripCopy->Text = L"Copy";
+			this->toolStripCopy->Size = System::Drawing::Size(56, 56);
+		
 			this->toolStripCopy->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripCopy_Click);
 			// 
 			// toolStripPaste
 			// 
 			this->toolStripPaste->AutoSize = false;
-			this->toolStripPaste->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripPaste->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripPaste->Enabled = false;
+			this->toolStripPaste->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->toolStripPaste->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripPaste.Image")));
 			this->toolStripPaste->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripPaste->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripPaste->Name = L"toolStripPaste";
-			this->toolStripPaste->Size = System::Drawing::Size(40, 40);
-			this->toolStripPaste->Text = L"Paste";
+			this->toolStripPaste->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripPaste->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripPaste_Click);
 			// 
 			// toolStripSeparator2
 			// 
 			this->toolStripSeparator2->Name = L"toolStripSeparator2";
-			this->toolStripSeparator2->Size = System::Drawing::Size(6, 43);
+			this->toolStripSeparator2->Size = System::Drawing::Size(6, 59);
 			// 
 			// toolStripRGB
 			// 
@@ -1932,13 +2003,14 @@ namespace VTFEdit
 			this->toolStripRGB->Checked = this->btnChannelRGB->Checked;
 			this->toolStripRGB->CheckOnClick = true;
 			this->toolStripRGB->CheckState = System::Windows::Forms::CheckState::Checked;
-			this->toolStripRGB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripRGB->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripRGB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripRGB->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripRGB.Image")));
 			this->toolStripRGB->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripRGB->ImageTransparentColor = System::Drawing::Color::SpringGreen;
 			this->toolStripRGB->Name = L"toolStripRGB";
-			this->toolStripRGB->Size = System::Drawing::Size(40, 40);
-			this->toolStripRGB->Text = L"Red Green and Blue Channels";
+			this->toolStripRGB->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripRGB->ToolTipText = L"Red Green and Blue Channels";
 			this->toolStripRGB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripRGB_Click);
 			// 
@@ -1947,13 +2019,14 @@ namespace VTFEdit
 			this->toolStripR->AutoSize = false;
 			this->toolStripR->Checked = this->btnChannelR->Checked;
 			this->toolStripR->CheckOnClick = true;
-			this->toolStripR->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripR->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripR->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripR->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripR.Image")));
 			this->toolStripR->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripR->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripR->Name = L"toolStripR";
-			this->toolStripR->Size = System::Drawing::Size(40, 40);
-			this->toolStripR->Text = L"Red Channel";
+			this->toolStripR->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripR->ToolTipText = L"Red Channel";
 			this->toolStripR->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripR_Click);
 			// 
@@ -1962,13 +2035,14 @@ namespace VTFEdit
 			this->toolStripG->AutoSize = false;
 			this->toolStripG->Checked = this->btnChannelG->Checked;
 			this->toolStripG->CheckOnClick = true;
-			this->toolStripG->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripG->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripG->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripG->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripG.Image")));
 			this->toolStripG->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripG->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripG->Name = L"toolStripG";
-			this->toolStripG->Size = System::Drawing::Size(40, 40);
-			this->toolStripG->Text = L"Green Channel";
+			this->toolStripG->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripG->ToolTipText = L"Green Channel";
 			this->toolStripG->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripG_Click);
 			// 
@@ -1977,13 +2051,14 @@ namespace VTFEdit
 			this->toolStripB->AutoSize = false;
 			this->toolStripB->Checked = this->btnChannelB->Checked;
 			this->toolStripB->CheckOnClick = true;
-			this->toolStripB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripB->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripB->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripB->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripB.Image")));
 			this->toolStripB->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripB->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripB->Name = L"toolStripB";
-			this->toolStripB->Size = System::Drawing::Size(40, 40);
-			this->toolStripB->Text = L"Blue Channel";
+			this->toolStripB->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripB->ToolTipText = L"Blue Channel";
 			this->toolStripB->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripB_Click);
 			// 
@@ -1992,33 +2067,35 @@ namespace VTFEdit
 			this->toolStripA->AutoSize = false;
 			this->toolStripA->Checked = this->btnChannelA->Checked;
 			this->toolStripA->CheckOnClick = true;
-			this->toolStripA->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripA->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripA->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripA->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripA.Image")));
 			this->toolStripA->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripA->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripA->Name = L"toolStripA";
-			this->toolStripA->Size = System::Drawing::Size(40, 40);
-			this->toolStripA->Text = L"Alpha Channel";
+			this->toolStripA->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripA->ToolTipText = L"Alpha Channel";
 			this->toolStripA->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripA_Click);
 			// 
 			// toolStripSeparator3
 			// 
 			this->toolStripSeparator3->Name = L"toolStripSeparator3";
-			this->toolStripSeparator3->Size = System::Drawing::Size(6, 43);
+			this->toolStripSeparator3->Size = System::Drawing::Size(6, 59);
 			// 
 			// toolStripMask
 			// 
 			this->toolStripMask->AutoSize = false;
 			this->toolStripMask->Checked = this->btnMask->Checked;
 			this->toolStripMask->CheckOnClick = true;
-			this->toolStripMask->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripMask->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripMask->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripMask->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripMask.Image")));
 			this->toolStripMask->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripMask->ImageTransparentColor = System::Drawing::Color::Maroon;
 			this->toolStripMask->Name = L"toolStripMask";
-			this->toolStripMask->Size = System::Drawing::Size(40, 40);
-			this->toolStripMask->Text = L"Toggle Alpha Mask";
+			this->toolStripMask->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripMask->ToolTipText = L"Toggle Alpha Mask";
 			this->toolStripMask->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripMask_Click);
 			// 
@@ -2027,13 +2104,14 @@ namespace VTFEdit
 			this->toolStripTile->AutoSize = false;
 			this->toolStripTile->Checked = this->btnTile->Checked;
 			this->toolStripTile->CheckOnClick = true;
-			this->toolStripTile->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Image;
+			this->toolStripTile->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->toolStripTile->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::ImageAndText;
 			this->toolStripTile->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"toolStripTile.Image")));
 			this->toolStripTile->ImageScaling = System::Windows::Forms::ToolStripItemImageScaling::None;
 			this->toolStripTile->ImageTransparentColor = System::Drawing::Color::Transparent;
 			this->toolStripTile->Name = L"toolStripTile";
-			this->toolStripTile->Size = System::Drawing::Size(40, 40);
-			this->toolStripTile->Text = L"Toggle Image Tiling";
+			this->toolStripTile->Size = System::Drawing::Size(56, 56);
+
 			this->toolStripTile->ToolTipText = L"Toggle Image Tiling";
 			this->toolStripTile->Click += gcnew System::EventHandler(this, &CVTFEdit::toolStripTile_Click);
 			// 
@@ -2062,12 +2140,12 @@ namespace VTFEdit
 			// 
 			// splSidebar
 			// 
-			this->splSidebar->BackColor = System::Drawing::SystemColors::Control;
-			this->splSidebar->Location = System::Drawing::Point(228, 43);
-			this->splSidebar->MinExtra = 96;
-			this->splSidebar->MinSize = 96;
+			this->splSidebar->BackColor = System::Drawing::Color::FromArgb(200, 200, 200);
+			this->splSidebar->Location = System::Drawing::Point(325, 64);
+			this->splSidebar->MinExtra = 120;
+			this->splSidebar->MinSize = 120;
 			this->splSidebar->Name = L"splSidebar";
-			this->splSidebar->Size = System::Drawing::Size(3, 501);
+			this->splSidebar->Size = System::Drawing::Size(3, 836);
 			this->splSidebar->TabIndex = 5;
 			this->splSidebar->TabStop = false;
 			this->splSidebar->SplitterMoved += gcnew System::Windows::Forms::SplitterEventHandler(this, &CVTFEdit::splSidebar_SplitterMoved);
@@ -2078,7 +2156,9 @@ namespace VTFEdit
 			// 
 			// lblHDRKey
 			// 
-			this->lblHDRKey->Location = System::Drawing::Point(7, 214);
+			this->lblHDRKey->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
+			this->lblHDRKey->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+			this->lblHDRKey->Location = System::Drawing::Point(8, 264);
 			this->lblHDRKey->Name = L"lblHDRKey";
 			this->lblHDRKey->Size = System::Drawing::Size(60, 19);
 			this->lblHDRKey->TabIndex = 20;
@@ -2086,31 +2166,31 @@ namespace VTFEdit
 			// 
 			// trkHDRExposure
 			// 
-			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
+			this->trkHDRExposure->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right)));
 			this->trkHDRExposure->AutoSize = false;
+			this->trkHDRExposure->BackColor = System::Drawing::Color::FromArgb(250, 250, 250);
 			this->trkHDRExposure->ContextMenu = this->mnuHDR;
-			this->trkHDRExposure->Location = System::Drawing::Point(68, 214);
+			this->trkHDRExposure->Location = System::Drawing::Point(72, 264);
 			this->trkHDRExposure->Name = L"trkHDRExposure";
-			this->trkHDRExposure->Size = System::Drawing::Size(116, 16);
+			this->trkHDRExposure->Size = System::Drawing::Size(160, 16);
 			this->trkHDRExposure->TabIndex = 21;
 			// 
 			// CVTFEdit
 			// 
-			this->AutoScaleBaseSize = System::Drawing::Size(5, 13);
-			this->BackColor = System::Drawing::SystemColors::ControlDark;
-			this->ClientSize = System::Drawing::Size(784, 561);
+			this->AutoScaleBaseSize = System::Drawing::Size(6, 15);
+			this->BackColor = System::Drawing::Color::FromArgb(240, 240, 240);
+			this->ClientSize = System::Drawing::Size(1280, 900);
 			this->Controls->Add(this->pnlMain);
 			this->Controls->Add(this->splSidebar);
 			this->Controls->Add(this->pnlSidebar);
 			this->Controls->Add(this->barStatus);
 			this->Controls->Add(this->toolStripView);
-			this->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8));
+			this->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Menu = this->mnuMain;
-			this->MinimumSize = System::Drawing::Size(600, 600);
-			this->Name = L"CVTFEdit";
-			this->Text = L"VTFEdit Reloaded";
+			this->MinimumSize = System::Drawing::Size(1000, 700);
+			this->Name = L"CVTFEdit Recharged";
+			this->Text = L"VTFEdit Recharged";
 			this->Closing += gcnew System::ComponentModel::CancelEventHandler(this, &CVTFEdit::CVTFEdit_Closing);
 			this->Load += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Load);
 			this->Move += gcnew System::EventHandler(this, &CVTFEdit::CVTFEdit_Move);

@@ -1,8 +1,8 @@
-# Guía de Compilación - VTFEdit-Reloaded
+# Guía de Compilación - VTFEdit Recharged
 
 ## 🎯 Resumen
 
-VTFEdit-Reloaded es una herramienta para editar archivos VTF (Valve Texture Format) y VMT (Valve Material Type) utilizados en juegos de Valve como Half-Life 2, Counter-Strike, etc.
+VTFEdit Recharged es una herramienta para editar archivos VTF (Valve Texture Format) y VMT (Valve Material Type) utilizados en juegos de Valve como Half-Life 2, Counter-Strike, etc.
 
 ## 📋 Requisitos Previos
 
@@ -39,7 +39,7 @@ build.bat
 ## 📁 Estructura del Proyecto
 
 ```
-VTFEdit-Reloaded/
+VTFEdit Recharged/
 ├── sln/vs2019/           # Solución de Visual Studio
 │   ├── VTFLib/          # Biblioteca principal (DLL)
 │   ├── VTFEdit/         # Interfaz gráfica (EXE)

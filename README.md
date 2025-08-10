@@ -33,11 +33,11 @@ Visual Studio 2019 or Visual Studio 2022
 "Desktop development with C++" workload
 #
 
-Open the solution in /VTFEdit-Reloaded/sln/ with Visual Studio 2019 or 2022. Set the build from Debug to Release, then right-click on VTFEdit in the Solution Explorer and click Set as startup project, then right-click VTFEdit again and click Build.
+Open the solution in /VTFEdit Recharged/sln/ with Visual Studio 2019 or 2022. Set the build from Debug to Release, then right-click on VTFEdit in the Solution Explorer and click Set as startup project, then right-click VTFEdit again and click Build.
 
-After the Build is finished, the executable will be in /VTFEdit-Reloaded/sln/vs2019/Build/
+After the Build is finished, the executable will be in /VTFEdit Recharged/sln/vs2019/Build/
 
-Move the executable and all dll files to any folder you want VTFEdit-Reloaded to be in, it does not matter.
+Move the executable and all dll files to any folder you want VTFEdit Recharged to be in, it does not matter.
 
 #
 HLLib can be obtained from here, with the dll and the source code if you want to build it yourself. [>>Link](https://web.archive.org/web/20171114194253/http://nemesis.thewavelength.net/files/files/hllib246.zip) 
@@ -101,7 +101,7 @@ vtfcmd.exe -folder "C:\output\*.vtf" -output "C:\input" -exportformat "jpg"
   v2.0.3
   - Updated the Shaders and Surface Properties list in VMT Create in accordance to the Valve Developer Wiki's current list
   - Added Drag and Drop functionality for images that can be imported normally through the File > Import dialog
-	  - Note that if any window is above VTFEdit-Reloaded, or any part of the window is outside monitor bounds, the Import settings will default to the top-left of the screen. I do not have the knowledge to change this behavior myself unfortunately.
+	  - Note that if any window is above VTFEdit Recharged, or any part of the window is outside monitor bounds, the Import settings will default to the top-left of the screen. I do not have the knowledge to change this behavior myself unfortunately.
   - Changed the ReadOnly property in the Convert Folder and Convert WAD dialog, so you can manually insert or change the path to your folder instead of needing to use the Folder Selector button on the right.
   - Changed the resource files to use "winres.h" and "winver.h" instead of "afxres.h". Supposedly afxres.h is outdated, and has been replaced with the two other headers. So far I haven't noticed any issues with this.
 

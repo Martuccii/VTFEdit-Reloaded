@@ -1,6 +1,6 @@
-# Guía de Instalación de Dependencias - VTFEdit-Reloaded
+# Guía de Instalación de Dependencias - VTFEdit Recharged
 
-Esta guía te ayudará a instalar todas las dependencias necesarias para compilar VTFEdit-Reloaded.
+Esta guía te ayudará a instalar todas las dependencias necesarias para compilar VTFEdit Recharged.
 
 ## 📋 Requisitos del Sistema
 

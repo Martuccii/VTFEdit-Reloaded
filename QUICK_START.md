@@ -1,4 +1,4 @@
-# 🚀 Inicio Rápido - VTFEdit-Reloaded
+# 🚀 Inicio Rápido - VTFEdit Recharged
 
 ## ✅ Estado Actual
 - **Dependencias del proyecto**: ✅ TODAS PRESENTES

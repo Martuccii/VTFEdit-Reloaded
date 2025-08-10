@@ -1,7 +1,7 @@
-# VTFEdit-Reloaded Dependencies Checker
+# VTFEdit Recharged Dependencies Checker
 # Este script verifica que todas las dependencias del proyecto esten presentes
 
-Write-Host "=== VTFEdit-Reloaded Dependencies Checker ===" -ForegroundColor Green
+Write-Host "=== VTFEdit Recharged Dependencies Checker ===" -ForegroundColor Green
 Write-Host "Verificando dependencias del proyecto..." -ForegroundColor Yellow
 
 # Verificar dependencias del proyecto

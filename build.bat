@@ -1,6 +1,6 @@
 @echo off
 echo ========================================
-echo    VTFEdit-Reloaded Build Script
+echo    VTFEdit Recharged Build Script
 echo ========================================
 echo.
 
@@ -31,7 +31,7 @@ if exist "sln\vs2019\VTFEdit\x64\Release" rmdir /s /q "sln\vs2019\VTFEdit\x64\Re
 echo.
 
 REM Compilar el proyecto
-echo Compilando VTFEdit-Reloaded...
+echo Compilando VTFEdit Recharged...
 "%MSBUILD_PATH%" "sln\vs2019\VTFLib.sln" /p:Configuration=Release /p:Platform=x64
 
 if %ERRORLEVEL% EQU 0 (
@@ -42,13 +42,13 @@ if %ERRORLEVEL% EQU 0 (
     echo.
     echo Archivos generados en: sln\vs2019\Build\
     echo.
-    echo - VTFEdit.exe (Interfaz gráfica)
+    echo - VTFEdit Recharged.exe (Interfaz gráfica)
     echo - VTFCmd.exe (Línea de comandos)
     echo - VTFLib.dll (Biblioteca principal)
     echo - DevIL.dll (Soporte de imágenes)
     echo - HLLib.dll (Soporte de archivos)
     echo.
-    echo Puedes ejecutar VTFEdit.exe desde la carpeta Build
+    echo Puedes ejecutar VTFEdit Recharged.exe desde la carpeta Build
     echo.
 ) else (
     echo.

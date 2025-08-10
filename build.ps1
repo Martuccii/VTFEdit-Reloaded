@@ -1,8 +1,8 @@
-# VTFEdit-Reloaded Build Script (PowerShell)
+# VTFEdit Recharged Build Script (PowerShell)
 # ========================================
 
 Write-Host "========================================" -ForegroundColor Cyan
-Write-Host "    VTFEdit-Reloaded Build Script" -ForegroundColor Cyan
+Write-Host "    VTFEdit Recharged Build Script" -ForegroundColor Cyan
 Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
@@ -36,7 +36,7 @@ if (Test-Path "sln\vs2019\VTFEdit\x64\Release") { Remove-Item "sln\vs2019\VTFEdi
 Write-Host ""
 
 # Compilar el proyecto
-Write-Host "Compilando VTFEdit-Reloaded..." -ForegroundColor Yellow
+Write-Host "Compilando VTFEdit Recharged..." -ForegroundColor Yellow
 $process = Start-Process -FilePath $msbuildPath -ArgumentList "sln\vs2019\VTFLib.sln", "/p:Configuration=Release", "/p:Platform=x64" -Wait -PassThru
 
 if ($process.ExitCode -eq 0) {
@@ -47,13 +47,13 @@ if ($process.ExitCode -eq 0) {
     Write-Host ""
     Write-Host "Archivos generados en: sln\vs2019\Build\" -ForegroundColor White
     Write-Host ""
-    Write-Host "- VTFEdit.exe (Interfaz gráfica)" -ForegroundColor White
+    Write-Host "- VTFEdit Recharged.exe (Interfaz gráfica)" -ForegroundColor White
     Write-Host "- VTFCmd.exe (Línea de comandos)" -ForegroundColor White
     Write-Host "- VTFLib.dll (Biblioteca principal)" -ForegroundColor White
     Write-Host "- DevIL.dll (Soporte de imágenes)" -ForegroundColor White
     Write-Host "- HLLib.dll (Soporte de archivos)" -ForegroundColor White
     Write-Host ""
-    Write-Host "Puedes ejecutar VTFEdit.exe desde la carpeta Build" -ForegroundColor White
+    Write-Host "Puedes ejecutar VTFEdit Recharged.exe desde la carpeta Build" -ForegroundColor White
     Write-Host ""
 } else {
     Write-Host ""
