@@ -27,6 +27,7 @@
 #include "WADConvert.h"
 #include "DirectoryItemInfoManager.h"
 #include "Utility.h"
+#include "ThemeManager.h"
 
 using namespace System;
 using namespace System::ComponentModel;
@@ -96,7 +97,7 @@ namespace VTFEdit
 			this->hWndNewViewer = 0;
 
 			this->InitializeComponent();
-
+			
 			this->SyntaxHilighter = gcnew CVMTFileUtility::CSyntaxHilighter(this->txtVMTFile);
 
 			this->treFileSystem->ImageList = this->DirectoryItemInfoManager->SmallImageList;
@@ -195,6 +196,7 @@ namespace VTFEdit
 	private: System::Windows::Forms::MenuItem ^  btnExport;
 	private: System::Windows::Forms::SaveFileDialog ^  dlgExportFile;
 	private: System::Windows::Forms::MenuItem ^  btnViewMenu;
+	private: System::Windows::Forms::MenuItem ^  btnThemeMenu;
 	private: System::Windows::Forms::MenuItem ^  btnChannelMenu;
 	private: System::Windows::Forms::MenuItem ^  btnChannelRGB;
 	private: System::Windows::Forms::MenuItem ^  btnChannelR;
@@ -302,6 +304,7 @@ namespace VTFEdit
 			this->btnCopy = (gcnew System::Windows::Forms::MenuItem());
 			this->btnPaste = (gcnew System::Windows::Forms::MenuItem());
 			this->btnViewMenu = (gcnew System::Windows::Forms::MenuItem());
+			this->btnThemeMenu = (gcnew System::Windows::Forms::MenuItem());
 			this->btnChannelMenu = (gcnew System::Windows::Forms::MenuItem());
 			this->btnChannelRGB = (gcnew System::Windows::Forms::MenuItem());
 			this->btnChannelR = (gcnew System::Windows::Forms::MenuItem());
@@ -627,15 +630,21 @@ namespace VTFEdit
 			// btnViewMenu
 			// 
 			this->btnViewMenu->Index = 2;
-			this->btnViewMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(3) {
-				this->btnChannelMenu, this->btnMask,
+			this->btnViewMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(4) {
+				this->btnThemeMenu, this->btnChannelMenu, this->btnMask,
 					this->btnTile
 			});
 			this->btnViewMenu->Text = L"&View";
 			// 
+			// btnThemeMenu
+			// 
+			this->btnThemeMenu->Index = 0;
+			this->btnThemeMenu->Text = L"&Theme";
+			this->btnThemeMenu->Click += gcnew System::EventHandler(this, &CVTFEdit::btnThemeMenu_Click);
+			// 
 			// btnChannelMenu
 			// 
-			this->btnChannelMenu->Index = 0;
+			this->btnChannelMenu->Index = 1;
 			this->btnChannelMenu->MenuItems->AddRange(gcnew cli::array< System::Windows::Forms::MenuItem^  >(5) {
 				this->btnChannelRGB,
 					this->btnChannelR, this->btnChannelG, this->btnChannelB, this->btnChannelA
@@ -685,14 +694,14 @@ namespace VTFEdit
 			// 
 			// btnMask
 			// 
-			this->btnMask->Index = 1;
+			this->btnMask->Index = 2;
 			this->btnMask->Shortcut = System::Windows::Forms::Shortcut::CtrlW;
 			this->btnMask->Text = L"&Mask";
 			this->btnMask->Click += gcnew System::EventHandler(this, &CVTFEdit::btnMask_Click);
 			// 
 			// btnTile
 			// 
-			this->btnTile->Index = 2;
+			this->btnTile->Index = 3;
 			this->btnTile->Shortcut = System::Windows::Forms::Shortcut::CtrlT;
 			this->btnTile->Text = L"&Tile";
 			this->btnTile->Click += gcnew System::EventHandler(this, &CVTFEdit::btnTile_Click);
@@ -2857,6 +2866,12 @@ namespace VTFEdit
 				bHasConfig = this->ReadConfigFile(pOldConfigFile);
 			}
 			this->RestoreForm();
+			
+			// Initialize theme manager and apply theme after restoring form
+			System::String ^configPath = IO::File::Exists(pNewConfigFile) ? pNewConfigFile : pOldConfigFile;
+			CThemeManager::Initialize(configPath);
+			CThemeManager::ApplyTheme(this);
+			UpdateThemeMenuText();
 
 			this->btnFileMapping->Checked = this->DirectoryItemInfoManager->FileMapping;
 			this->btnVolatileAccess->Checked = this->DirectoryItemInfoManager->VolatileAccess;
@@ -4334,6 +4349,30 @@ namespace VTFEdit
 			this->UpdateVTFFile();
 		}
 
+		private: System::Void btnThemeMenu_Click(System::Object ^  sender, System::EventArgs ^  e)
+		{
+			// Toggle between light and dark themes
+			CThemeManager::ToggleTheme();
+			
+			// Apply the new theme to the current form
+			CThemeManager::ApplyTheme(this);
+			
+			// Update the menu text to show current theme
+			UpdateThemeMenuText();
+		}
+
+		private: void UpdateThemeMenuText()
+		{
+			if (CThemeManager::CurrentTheme == ThemeType::Dark)
+			{
+				this->btnThemeMenu->Text = L"&Theme (Dark)";
+			}
+			else
+			{
+				this->btnThemeMenu->Text = L"&Theme (Light)";
+			}
+		}
+
 		private: System::Void btnMask_Click(System::Object ^  sender, System::EventArgs ^  e)
 		{
 			this->btnMask->Checked = !this->btnMask->Checked;
@@ -5052,6 +5091,7 @@ namespace VTFEdit
 				ConfigFile->WriteLine("[VTFEdit]");
 				ConfigFile->WriteLine("");
 
+				ConfigFile->WriteLine(System::String::Concat("VTFEdit.Theme = ", (CThemeManager::CurrentTheme == ThemeType::Dark) ? "Dark" : "Light"));
 				ConfigFile->WriteLine(System::String::Concat("VTFEdit.AnimationFrameInterval = ", this->tmrAnimate->Interval.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFEdit.Mask = ", this->btnMask->Checked.ToString()));
 				ConfigFile->WriteLine(System::String::Concat("VTFEdit.Tile = ", this->btnTile->Checked.ToString()));
@@ -5191,7 +5231,18 @@ namespace VTFEdit
 
 					try
 					{
-						if(System::String::Compare(sArg, "VTFEdit.AnimationFrameInterval", true) == 0)
+						if(System::String::Compare(sArg, "VTFEdit.Theme", true) == 0)
+						{
+							if(System::String::Compare(sVal, "Dark", true) == 0)
+							{
+								CThemeManager::CurrentTheme = ThemeType::Dark;
+							}
+							else
+							{
+								CThemeManager::CurrentTheme = ThemeType::Light;
+							}
+						}
+						else if(System::String::Compare(sArg, "VTFEdit.AnimationFrameInterval", true) == 0)
 						{
 							this->tmrAnimate->Interval = Convert::ToUInt32(sVal);
 						}
